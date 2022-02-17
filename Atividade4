@@ -1,0 +1,132 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <utility>
+using std::pair;
+
+using namespace std;
+
+class usuario {
+  private:
+    string name;
+    int cpf;
+    int credito = 10;
+  public:
+    usuario(string nome , int cpf);
+    string getNome();
+    void setNome(string name);
+    int getCPF();
+    int getCreditos();
+    bool adicionarCreditos(int valor);
+    bool removerCreditos(int valor);
+    usuario& operator++();
+    usuario& operator--();
+
+};
+
+class Cadastro {
+  private:
+    map<int, usuario> usuarios;
+  public:
+    Cadastro(){}
+    void adicionarUsuario(usuario _usuario);
+    map<int, usuario> getUsuarios();
+    usuario getUsuarioPorCPF(int CPF);
+};
+
+usuario::usuario(string nome , int cpf){
+  this->name = nome;
+  this->cpf = cpf;
+  this->credito = 10;
+}
+
+string usuario::getNome(){
+  return this->name;
+}
+
+void usuario::setNome(string nome){
+  this->name = nome;
+}
+
+int usuario::getCPF(){
+  return this->cpf;
+}
+
+int usuario::getCreditos(){
+  return this->credito;
+}
+
+bool usuario::adicionarCreditos(int valor){
+  if(valor < 0){
+    return false;
+  }
+  this->credito = this->getCreditos() + valor;
+  return true;
+}
+
+bool usuario::removerCreditos(int valor){
+  if(valor > this->getCreditos()){
+    return false;
+  }
+  this->credito = this->getCreditos() - valor;
+  return true;
+}
+
+usuario& usuario::operator++(){
+  this->adicionarCreditos(1);
+  return *this;
+}
+
+usuario& usuario::operator--(){
+  this->removerCreditos(1);
+  return *this;
+}
+
+void Cadastro::adicionarUsuario(usuario _usuario){
+  if (usuarios.count(_usuario.getCPF())>0)
+    return usuarios.get[CPF];
+  else 
+    usuarios.insert(pair<int, usuario>(_usuario.getCPF(),_usuario));
+}
+
+map<int, usuario> Cadastro::getUsuarios(){
+  return this->usuarios;
+}
+
+usuario Cadastro::getUsuarioPorCPF(int CPF){
+  map<int,usuario>::iterator it;
+  it = usuarios.find(CPF);
+  if(it != usuarios.end())
+    return usuarios[CPF];
+}
+bool usuario::adicionarCreditoPara(int cpf, int creditos):{
+  if(valor < 0){
+    return false;
+  }
+  this->credito = this->getCreditos() + valor;
+  return true;
+}
+bool transferirCreditos(int cpf_origem, int cpf_destino, int creditos):{
+  if(valor > 0){
+    cpf_origem = x;
+    x = cpf_destino + valor;
+  }
+  this->credito = this->getCreditos() + valor;
+  return true;
+}
+
+int main() {
+  
+cout <<"Digite o nome"<<endl;
+cin.getNome(name);
+
+cout << "Digite o CPF" <<endl;
+cin.getCPF(cpf);
+
+cout << "Digite os creditos" <<endl;
+cin.getCreditos(credito);
+
+cout<< "Digite o usuario" <<endl;
+cin.getUsuarios(usuarios);
+}
